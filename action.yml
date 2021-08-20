@@ -1,0 +1,24 @@
+name: 'kubectl'
+description: 'kubectl command GitHub Action'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.version }}
+    - ${{ inputs.config }}
+    - ${{ inputs.command }}
+branding:
+  icon: 'terminal'
+  color: 'blue'
+inputs:
+  version:
+    description: 'kubectl version; defaults latest'
+    required: false
+    default: latest
+    # v1.21.0
+  config:
+    description: 'kube config data'
+    required: true
+  command:
+    description: 'kubectl command to run, e.g. `get pods`'
+    required: true
