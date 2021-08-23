@@ -10,7 +10,11 @@ LABEL com.github.actions.description="Runs kubectl, config can be provided with 
 LABEL com.github.actions.icon="terminal"
 LABEL com.github.actions.color="blue"
 
-RUN apk add --no-cache curl
+ENV VER=1.21.2/2021-07-05
+
+RUN apk add --no-cache curl  &&  \
+    curl -o /usr/local/bin/aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/$VER/bin/linux/amd64/aws-iam-authenticator && \
+    chmod +x /usr/local/bin/aws-iam-authenticator
 
 COPY LICENSE README.md /
 COPY entrypoint.sh /entrypoint.sh
