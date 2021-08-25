@@ -16,6 +16,8 @@ curl -sLO "https://dl.k8s.io/release/$version/bin/linux/amd64/kubectl" -o kubect
 chmod +x kubectl
 mv kubectl /usr/local/bin
 
+aws configure list && aws sts get-caller-identity
+
 # Extract base64 encoded config data to KUBECONFIG
 echo "$config" | base64 -d > /tmp/config
 export KUBECONFIG=/tmp/config
